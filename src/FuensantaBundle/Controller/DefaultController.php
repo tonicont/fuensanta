@@ -18,7 +18,7 @@ class DefaultController extends Controller
      */
     public function articlesListAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $articles = $em->getRepository('FuensantaBundle:Article')->findAll();
 
@@ -43,7 +43,7 @@ class DefaultController extends Controller
      * @return JsonResponse
      */
     public function fairsListAction(){
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $fairs = $em->getRepository('FuensantaBundle:Fair')->findAll();
 
@@ -68,7 +68,7 @@ class DefaultController extends Controller
      */
     public function eventsListAction($fair_id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $events = $em->getRepository('FuensantaBundle:Event')->findBy( array('fair' => $fair_id));
 
