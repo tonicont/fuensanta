@@ -2,20 +2,32 @@
 
 namespace FuensantaBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity
  */
 class Category
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=20, nullable=false)
      */
     private $nombre;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
     /**
@@ -52,4 +64,3 @@ class Category
         return $this->id;
     }
 }
-

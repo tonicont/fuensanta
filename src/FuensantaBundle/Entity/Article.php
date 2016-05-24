@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article")
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="fk_category", columns={"category"})})
  * @ORM\Entity
  */
 class Article
@@ -36,16 +36,18 @@ class Article
     /**
      * @var integer
      *
+     * @ORM\Column(name="category", type="integer", nullable=false)
+     */
+    private $category;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var integer
-     */
-    private $category;
 
 
 
@@ -122,16 +124,6 @@ class Article
     }
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set category
      *
      * @param integer $category
@@ -153,5 +145,15 @@ class Article
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
