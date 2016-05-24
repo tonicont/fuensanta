@@ -42,6 +42,11 @@ class Article
      */
     private $id;
 
+    /**
+     * @var integer
+     */
+    private $category;
+
 
 
     /**
@@ -124,5 +129,29 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param integer $category
+     *
+     * @return Article
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return integer
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

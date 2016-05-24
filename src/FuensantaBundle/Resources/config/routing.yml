@@ -6,6 +6,10 @@ fuensanta_articleList:
   path: /articles
   defaults: { _controller: FuensantaBundle:Default:articlesList }
 
+fuensanta_getArticlesByCategory:
+  path: /articles/{category_id}
+  defaults: { _controller: FuensantaBundle:Default:getArticlesByCategory }
+
 Fuensanta_fairsList:
   path:  /fairs
   defaults: { _controller: FuensantaBundle:Default:fairsList }

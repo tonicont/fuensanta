@@ -30,7 +30,8 @@ class DefaultController extends Controller
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'content' => $article->getContent(),
-                'date' => $article->getDate()
+                'date' => $article->getDate(),
+                'category' => $article->getCategory()
             ];
 
             $response[] = $a;
@@ -82,6 +83,29 @@ class DefaultController extends Controller
                 'content' => $event->getDescription(),
                 'date' => date_format($event->getDate(), 'd-m-Y'),
                 'time' => date_format($event->getTime(), 'H:i')
+            ];
+
+            $response[] = $a;
+        }
+
+        return new JsonResponse($response);
+    }
+
+    public function getArticlesByCategoryAction($category_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository('FuensantaBundle:Article')->findBy(array('category' => $category_id));
+
+        $response = array();
+
+        foreach($articles as $article)
+        {
+            $a = [
+                'id' => $article->getId(),
+                'title' => $article->getTitle(),
+                'content' => $article->getContent(),
+                'date' => $article->getDate()
             ];
 
             $response[] = $a;
