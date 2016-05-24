@@ -39,6 +39,32 @@ class DefaultController extends Controller
 
         return new JsonResponse($response);
     }
+    
+    /**
+     * @return JsonResponse
+     */
+    public function getArticlesByCategoryAction($category_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository('FuensantaBundle:Article')->findBy(array('category' => $category_id));
+
+        $response = array();
+
+        foreach($articles as $article)
+        {
+            $a = [
+                'id' => $article->getId(),
+                'title' => $article->getTitle(),
+                'content' => $article->getContent(),
+                'date' => $article->getDate()
+            ];
+
+            $response[] = $a;
+        }
+
+        return new JsonResponse($response);
+    }
 
     /**
      * @return JsonResponse
@@ -91,26 +117,4 @@ class DefaultController extends Controller
         return new JsonResponse($response);
     }
 
-    public function getArticlesByCategoryAction($category_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $articles = $em->getRepository('FuensantaBundle:Article')->findBy(array('category' => $category_id));
-
-        $response = array();
-
-        foreach($articles as $article)
-        {
-            $a = [
-                'id' => $article->getId(),
-                'title' => $article->getTitle(),
-                'content' => $article->getContent(),
-                'date' => $article->getDate()
-            ];
-
-            $response[] = $a;
-        }
-
-        return new JsonResponse($response);
-    }
 }
